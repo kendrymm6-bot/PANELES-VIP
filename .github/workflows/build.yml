@@ -1,0 +1,30 @@
+name: Paneles-VIP-Build
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Instalar Theos
+        uses: theos/setup-theos@master
+
+      - name: Compilar
+        run: |
+          make package FINALPACKAGE=1
+        env:
+          THEOS: ${{github.workspace}}/theos
+
+      - name: Guardar Archivo
+        uses: actions/upload-artifact@v4
+        with:
+          name: Paneles-VIP-DEB
+          path: packages/*.deb
