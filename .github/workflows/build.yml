@@ -22,4 +22,4 @@ jobs:
 
       - name: Compilar Panel
         run: |
-          make package FINALPACKAGE=
+          make package FINALPACKAGE=1
