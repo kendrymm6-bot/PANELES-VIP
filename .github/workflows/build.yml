@@ -15,7 +15,7 @@ jobs:
           submodules: recursive
 
       - name: Instalar Theos
-        uses: mlgv/setup-theos@v1
+        uses: theos/setup-theos@v1.3.1
 
       - name: Compilar
         run: |
