@@ -1,4 +1,4 @@
-name: Paneles-VIP-Build
+name: Paneles-VIP-Manual
 on:
   workflow_dispatch:
   push:
@@ -14,12 +14,23 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Instalar Theos Manual
+      - name: Instalar Herramientas Manualmente
         run: |
           git clone --recursive https://github.com/theos/theos.git ~/theos
+          curl -LO https://github.com/theos/sdks/archive/master.zip
+          unzip master.zip -d ~/theos/sdks
+          mv ~/theos/sdks/sdks-master/* ~/theos/sdks/
           echo "THEOS=~/theos" >> $GITHUB_ENV
           echo "~/theos/bin" >> $GITHUB_PATH
 
-      - name: Compilar Panel
+      - name: Compilar Panel VIP
         run: |
           make package FINALPACKAGE=1
+        env:
+          THEOS: ~/theos
+
+      - name: Guardar Archivo DEB
+        uses: actions/upload-artifact@v4
+        with:
+          name: Paneles-VIP-DEB
+          path: packages/*.deb
