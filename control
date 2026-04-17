@@ -1,0 +1,9 @@
+Package: com.andres.panelesvip
+Name: Paneles VIP 💎
+Depends: mobilesubstrate
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: Sistema de paneles exclusivo para el clan ZENIT.
+Maintainer: Andres
+Author: Andres
+Section: Tweaks
